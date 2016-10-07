@@ -103,5 +103,54 @@ digraph G {
   "Valet Key" -> "Gatekeeper"
   "Valet Key" -> "Static Content Hosting"
 
-  
+  "Asynchronous Messaging" -> "Autoscaling"
+  "Asynchronous Messaging" -> "Circuit Breaker"
+  "Asynchronous Messaging" -> "Competing Consumers"
+  "Asynchronous Messaging" -> "Priority Queue"
+  "Asynchronous Messaging" -> "Queue-based Load Leveling"
+  "Asynchronous Messaging" -> Retry
+  "Asynchronous Messaging" -> "Scheduler-Agent-Supervisor"
+
+  Autoscaling -> Throttling
+  Autoscaling -> Competing Consumers
+  Autoscaling -> Instrumentation and Telemetry
+
+  Caching -> "Cache-Aside"
+
+  "Compute Partitioning" -> Autoscaling
+  "Compute Partitioning" -> Competing Consumers
+  "Compute Partitioning" -> Compute Resource Consolidation
+  "Compute Partitioning" -> Gatekeeper
+  "Compute Partitioning" -> Leader Election
+
+  "Data Consistency" -> "Compensating Transaction"
+  "Data Consistency" -> CQRS
+  "Data Consistency" -> "Event Sourcing"
+  "Data Consistency" -> "Data Partitioning"
+  "Data Consistency" -> "Data Replication and Synchronization"
+  "Data Consistency" -> Caching
+  "Data Consistency" -> "Cache-Aside"
+
+  "Data Partitioning" -> Sharding
+  "Data Partitioning" -> "Data Consistency"
+  "Data Partitioning" -> "Data Replication and Synchronization"
+  "Data Partitioning" -> "Index Table"
+  "Data Partitioning" -> "Materialized View"
+
+  "Data Replication and Synchronization" -> Caching
+  "Data Replication and Synchronization" -> "Data Consistency"
+  "Data Replication and Synchronization" -> "Data Partitioning"
+
+  "Instrumentation and Telemetry" -> "Health Endpoint Monitoring"
+  "Instrumentation and Telemetry" -> "Service Metering"
+  "Instrumentation and Telemetry" -> "Queue-based Load Leveling"
+  "Instrumentation and Telemetry" -> "Priority Queue"
+  "Instrumentation and Telemetry" -> Retry
+  "Instrumentation and Telemetry" -> "Runtime Reconfiguration"
+
+  "Multiple Datacenter Deployment" -> "Compute Partioning"
+  "Multiple Datacenter Deployment" -> "Data Replication and Synchronization"
+  "Multiple Datacenter Deployment" -> "Federated Identity"
+
+  "Service Metering" -> "Instrumentation and Telemetry"
 }
