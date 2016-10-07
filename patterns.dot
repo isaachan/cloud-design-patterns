@@ -1,5 +1,107 @@
 digraph G { 
- Start [label="Start", shape="box"] 
- End [label="End", shape="box"] 
- Start -> End [label = "Route"] 
+
+  node[style="filled,bold"]
+  "Autoscaling"
+  "Caching"
+  "Compute Partitioning"
+  "Data Partitioning"
+  "Data Replication and Synchronization"
+  "Instrumentation and Telemetry"
+  "Multiple Datacenter Deployment"
+  "Service Metering"
+
+  node[style="filled,rounded", shape="diamond"]
+  "Asynchronous Messaging"
+  "Data Consistency"
+
+  node[style="solid", shape="box"]
+  "Federated Identity"
+  
+  "Cache-Aside" -> "Caching"
+  "Cache-Aside" -> "Data Consistency"
+
+  "Circuit Breaker" -> "Retry"
+  "Circuit Breaker" -> "Health Endpoint Monitoring"
+
+  "Compensating Transaction" -> "Data Consistency"
+  "Compensating Transaction" -> "Scheduler-Agent-Supervisor"
+  "Compensating Transaction" -> "Retry"
+  
+  "Competing Consumers" -> "Asynchronous Messaging"
+  "Competing Consumers" -> "Autoscaling"
+  "Competing Consumers" -> "Compute Resource Consolidation"
+  "Competing Consumers" -> "Queue-based Load Leveling"
+
+  "Compute Resource Consolidation" -> "Autoscaling"
+  "Compute Resource Consolidation" -> "Compute Partitioning"
+
+  CQRS -> "Data Consistency"
+  CQRS -> "Data Partitioning"
+  CQRS -> "Event Sourcing"
+  CQRS -> "Materialized View"
+
+  "Event Sourcing" -> CQRS
+  "Event Sourcing" -> "Materialized View"
+  "Event Sourcing" -> "Compensating Transaction"
+  "Event Sourcing" -> "Data Consistency"
+  "Event Sourcing" -> "Data Partitioning"
+
+  "External Configuration Store" -> "Runtime Reconfiguration"
+
+  "Gatekeeper" -> "Valet Key"
+  
+  "Health Endpoint Monitoring" -> "Instrumentation and Telemetry"
+  
+  "Index Table" -> "Data Consistency"
+  "Index Table" -> "Sharding"
+  "Index Table" -> "Materialized View"
+
+  "Leader Election" -> "Autoscaling"
+  "Leader Election" -> "Compute Partitioning"
+
+  "Materialized View" -> "Data Consistency"
+  "Materialized View" -> CQRS
+  "Materialized View" -> "Event Sourcing"
+  "Materialized View" -> "Index Table"
+
+  "Pipes and Filters" -> "Competing Consumers"
+  "Pipes and Filters" -> "Compute Resource Consolidation"
+  "Pipes and Filters" -> "Compensating Transaction"
+
+  "Priority Queue" -> "Asynchronous Messaging"
+  "Priority Queue" -> "Competing Consumers"
+  "Priority Queue" -> Throttling
+  "Priority Queue" -> Autoscaling
+
+  "Queue-based Load Leveling" -> "Asynchronous Messaging"
+  "Queue-based Load Leveling" -> "Competing Consumers"
+  "Queue-based Load Leveling" -> Throttling
+
+  Retry -> "Circuit Breaker"
+
+  "Runtime Reconfiguration" -> "External Configuration Store"
+
+  "Scheduler-Agent-Supervisor" -> Retry
+  "Scheduler-Agent-Supervisor" -> "Circuit Breaker"
+  "Scheduler-Agent-Supervisor" -> "Compensating Transaction"
+  "Scheduler-Agent-Supervisor" -> "Asynchronous Messaging"
+  "Scheduler-Agent-Supervisor" -> "Leader Election"
+
+  Sharding -> "Data Consistency"
+  Sharding -> "Data Partitioning"
+  Sharding -> "Index Table"
+  Sharding -> "Materialized View"
+
+  "Static Content Hosting" -> "Valet Key"
+
+  Throttling -> "Instrumentation and Telemetry"
+  Throttling -> "Service Metering"
+  Throttling -> "Autoscaling"
+  Throttling -> "Queue-based Load Leveling"
+  Throttling -> "Priority Queue"
+
+  "Valet Key" -> "Gatekeeper"
+  "Valet Key" -> "Static Content Hosting"
+
+  
 }
