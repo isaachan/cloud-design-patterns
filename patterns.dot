@@ -16,133 +16,99 @@ digraph G {
 
   node[style="solid", shape="box"]
   "Federated Identity"
-  
-  "Cache-Aside" -> "Caching"
-  "Cache-Aside" -> "Data Consistency"
 
-  "Circuit Breaker" -> "Retry"
+
+  "Cache-Aside" -> "Caching" [dir=both]
+  "Cache-Aside" -> "Data Consistency" [dir=both]
+
+  "Circuit Breaker" -> "Retry" [dir=both]
   "Circuit Breaker" -> "Health Endpoint Monitoring"
 
-  "Compensating Transaction" -> "Data Consistency"
-  "Compensating Transaction" -> "Scheduler-Agent-Supervisor"
+  "Compensating Transaction" -> "Data Consistency" [dir=both]
+  "Compensating Transaction" -> "Scheduler-Agent-Supervisor" [dir=both]
   "Compensating Transaction" -> "Retry"
   
-  "Competing Consumers" -> "Asynchronous Messaging"
-  "Competing Consumers" -> "Autoscaling"
+  "Competing Consumers" -> "Asynchronous Messaging" [dir=both]
+  "Competing Consumers" -> "Autoscaling" [dir=both]
   "Competing Consumers" -> "Compute Resource Consolidation"
-  "Competing Consumers" -> "Queue-based Load Leveling"
+  "Competing Consumers" -> "Queue-based Load Leveling" [dir=both]
 
   "Compute Resource Consolidation" -> "Autoscaling"
-  "Compute Resource Consolidation" -> "Compute Partitioning"
+  "Compute Resource Consolidation" -> "Compute Partitioning" [dir=both]
 
-  CQRS -> "Data Consistency"
+  CQRS -> "Data Consistency" [dir=both]
   CQRS -> "Data Partitioning"
-  CQRS -> "Event Sourcing"
-  CQRS -> "Materialized View"
+  CQRS -> "Event Sourcing" [dir=both]
+  CQRS -> "Materialized View" [dir=both]
 
-  "Event Sourcing" -> CQRS
-  "Event Sourcing" -> "Materialized View"
+  "Event Sourcing" -> "Materialized View" [dir=both]
   "Event Sourcing" -> "Compensating Transaction"
-  "Event Sourcing" -> "Data Consistency"
+  "Event Sourcing" -> "Data Consistency" [dir=both]
   "Event Sourcing" -> "Data Partitioning"
 
-  "External Configuration Store" -> "Runtime Reconfiguration"
+  "External Configuration Store" -> "Runtime Reconfiguration" [dir=both]
 
-  "Gatekeeper" -> "Valet Key"
+  "Gatekeeper" -> "Valet Key" [dir=both]
   
-  "Health Endpoint Monitoring" -> "Instrumentation and Telemetry"
+  "Health Endpoint Monitoring" -> "Instrumentation and Telemetry" [dir=both]
   
   "Index Table" -> "Data Consistency"
-  "Index Table" -> "Sharding"
-  "Index Table" -> "Materialized View"
+  "Index Table" -> "Sharding" [dir=both]
+  "Index Table" -> "Materialized View" [dir=both]
 
   "Leader Election" -> "Autoscaling"
-  "Leader Election" -> "Compute Partitioning"
+  "Leader Election" -> "Compute Partitioning" [dir=both]
 
   "Materialized View" -> "Data Consistency"
-  "Materialized View" -> CQRS
-  "Materialized View" -> "Event Sourcing"
-  "Materialized View" -> "Index Table"
 
   "Pipes and Filters" -> "Competing Consumers"
   "Pipes and Filters" -> "Compute Resource Consolidation"
   "Pipes and Filters" -> "Compensating Transaction"
 
-  "Priority Queue" -> "Asynchronous Messaging"
+  "Priority Queue" -> "Asynchronous Messaging" [dir=both]
   "Priority Queue" -> "Competing Consumers"
-  "Priority Queue" -> Throttling
+  "Priority Queue" -> Throttling [dir=both]
   "Priority Queue" -> Autoscaling
 
-  "Queue-based Load Leveling" -> "Asynchronous Messaging"
-  "Queue-based Load Leveling" -> "Competing Consumers"
-  "Queue-based Load Leveling" -> Throttling
-
-  Retry -> "Circuit Breaker"
-
-  "Runtime Reconfiguration" -> "External Configuration Store"
+  "Queue-based Load Leveling" -> "Asynchronous Messaging" [dir=both]
+  "Queue-based Load Leveling" -> Throttling [dir=both]
 
   "Scheduler-Agent-Supervisor" -> Retry
   "Scheduler-Agent-Supervisor" -> "Circuit Breaker"
-  "Scheduler-Agent-Supervisor" -> "Compensating Transaction"
-  "Scheduler-Agent-Supervisor" -> "Asynchronous Messaging"
+  "Scheduler-Agent-Supervisor" -> "Asynchronous Messaging" [dir=both]
   "Scheduler-Agent-Supervisor" -> "Leader Election"
 
   Sharding -> "Data Consistency"
-  Sharding -> "Data Partitioning"
-  Sharding -> "Index Table"
+  Sharding -> "Data Partitioning" [dir=both]
   Sharding -> "Materialized View"
 
-  "Static Content Hosting" -> "Valet Key"
+  "Static Content Hosting" -> "Valet Key" [dir=both]
 
   Throttling -> "Instrumentation and Telemetry"
   Throttling -> "Service Metering"
-  Throttling -> "Autoscaling"
-  Throttling -> "Queue-based Load Leveling"
-  Throttling -> "Priority Queue"
-
-  "Valet Key" -> "Gatekeeper"
-  "Valet Key" -> "Static Content Hosting"
+  Throttling -> "Autoscaling" [dir=both]
 
   "Asynchronous Messaging" -> "Autoscaling"
   "Asynchronous Messaging" -> "Circuit Breaker"
-  "Asynchronous Messaging" -> "Competing Consumers"
-  "Asynchronous Messaging" -> "Priority Queue"
-  "Asynchronous Messaging" -> "Queue-based Load Leveling"
   "Asynchronous Messaging" -> Retry
-  "Asynchronous Messaging" -> "Scheduler-Agent-Supervisor"
 
-  Autoscaling -> Throttling
-  Autoscaling -> Competing Consumers
-  Autoscaling -> Instrumentation and Telemetry
+  Autoscaling -> "Instrumentation and Telemetry"
 
-  Caching -> "Cache-Aside"
+  "Compute Partitioning" -> "Autoscaling"
+  "Compute Partitioning" -> "Competing Consumers"
+  "Compute Partitioning" -> "Gatekeeper"
 
-  "Compute Partitioning" -> Autoscaling
-  "Compute Partitioning" -> Competing Consumers
-  "Compute Partitioning" -> Compute Resource Consolidation
-  "Compute Partitioning" -> Gatekeeper
-  "Compute Partitioning" -> Leader Election
-
-  "Data Consistency" -> "Compensating Transaction"
-  "Data Consistency" -> CQRS
-  "Data Consistency" -> "Event Sourcing"
-  "Data Consistency" -> "Data Partitioning"
-  "Data Consistency" -> "Data Replication and Synchronization"
+  "Data Consistency" -> "Data Partitioning" [dir=both]
+  "Data Consistency" -> "Data Replication and Synchronization" [dir=both]
   "Data Consistency" -> Caching
-  "Data Consistency" -> "Cache-Aside"
 
-  "Data Partitioning" -> Sharding
-  "Data Partitioning" -> "Data Consistency"
-  "Data Partitioning" -> "Data Replication and Synchronization"
+  "Data Partitioning" -> "Data Replication and Synchronization" [dir=both]
   "Data Partitioning" -> "Index Table"
   "Data Partitioning" -> "Materialized View"
 
   "Data Replication and Synchronization" -> Caching
-  "Data Replication and Synchronization" -> "Data Consistency"
-  "Data Replication and Synchronization" -> "Data Partitioning"
 
-  "Instrumentation and Telemetry" -> "Health Endpoint Monitoring"
-  "Instrumentation and Telemetry" -> "Service Metering"
+  "Instrumentation and Telemetry" -> "Service Metering" [dir=both]
   "Instrumentation and Telemetry" -> "Queue-based Load Leveling"
   "Instrumentation and Telemetry" -> "Priority Queue"
   "Instrumentation and Telemetry" -> Retry
@@ -151,6 +117,4 @@ digraph G {
   "Multiple Datacenter Deployment" -> "Compute Partioning"
   "Multiple Datacenter Deployment" -> "Data Replication and Synchronization"
   "Multiple Datacenter Deployment" -> "Federated Identity"
-
-  "Service Metering" -> "Instrumentation and Telemetry"
 }
