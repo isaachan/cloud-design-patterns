@@ -10,5 +10,4 @@ fi
 
 WORKING="/backup"
 rm -f patterns.png
-docker run --rm -w $WORKING -v $(pwd):$WORKING $IMG dot -Tpng patterns.dot -o patterns.png
-
+docker run --rm -w $WORKING -v $(pwd):$WORKING $IMG dot $@
