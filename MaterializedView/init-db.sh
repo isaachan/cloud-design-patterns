@@ -1,7 +1,7 @@
 #! /bin/bash
 
 IMG=mysql
-DB=customer
+DB=estore
 PASSWORD=1234abcd
 
 if [ ! "$(docker images | grep $IMG)" ]
